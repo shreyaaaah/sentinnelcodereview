@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { getApiUrl } from "../lib/api";
 import { Flame, GitCommit, AlertTriangle, ShieldAlert, FileText, Info, History } from "lucide-react";
 
 interface HeatmapCell {
@@ -73,7 +74,7 @@ export default function RiskHeatmapPage() {
   const [selectedCell, setSelectedCell] = useState<HeatmapCell | null>(data.cells[4]); // Default to payment_processor.py
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/risk-heatmap-latest")
+    fetch(getApiUrl("/api/risk-heatmap-latest"))
       .then((res) => res.json())
       .then((d) => {
         if (d && d.cells && d.cells.length > 0) {

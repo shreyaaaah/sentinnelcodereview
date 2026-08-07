@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { getApiUrl } from "../lib/api";
 import {
   Code,
   Upload,
@@ -106,7 +107,7 @@ export default function StandaloneScanPage() {
     await new Promise((r) => setTimeout(r, 600));
 
     try {
-      let endpoint = "http://localhost:8000/api/scan-code";
+      let endpoint = getApiUrl("/api/scan-code");
       let bodyData: any = {
         code_text: codeText,
         filename: filename,
@@ -115,7 +116,7 @@ export default function StandaloneScanPage() {
       };
 
       if (activeInputTab === "github") {
-        endpoint = "http://localhost:8000/api/scan-github-repo";
+        endpoint = getApiUrl("/api/scan-github-repo");
         bodyData = { repo_url: githubUrl };
       }
 
@@ -152,7 +153,19 @@ export default function StandaloneScanPage() {
   };
 
   const generateFallbackScanResult = (fname: string, code: string) => {
-    const activeName = fname || "uploaded_code.py";
+    let activeName = fname;
+    if (!activeName && activeInputTab === "github" && githubUrl) {
+      try {
+        const urlParts = githubUrl.split('#')[0].split('?')[0].split('/');
+        activeName = decodeURIComponent(urlParts[urlParts.length - 1]);
+      } catch {
+        activeName = "github_source.code";
+      }
+    }
+    if (!activeName) {
+      activeName = "uploaded_code.py";
+    }
+
     return {
       scanned_file_path: activeName,
       overall_risk_score: 45.0,

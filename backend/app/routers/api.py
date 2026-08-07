@@ -322,25 +322,35 @@ async def scan_github_repository(req: GitHubRepoScanRequest, db: AsyncSession = 
     # 1. Handle Single File Blob URL (e.g. github.com/owner/repo/blob/branch/path/to/file.py)
     if blob_match:
         owner, repo_name, branch, file_path = blob_match.group(1), blob_match.group(2), blob_match.group(3), blob_match.group(4)
+        file_path = file_path.split('#')[0].split('?')[0]
         full_repo_name = f"{owner}/{repo_name}"
-        raw_web_url = f"https://github.com/{owner}/{repo_name}/raw/{branch}/{file_path}"
+        decoded_path = urllib.parse.unquote(file_path)
+        
+        candidate_urls = [
+            f"https://raw.githubusercontent.com/{owner}/{repo_name}/{branch}/{file_path}",
+            f"https://raw.githubusercontent.com/{owner}/{repo_name}/{branch}/{decoded_path}",
+            f"https://github.com/{owner}/{repo_name}/raw/{branch}/{file_path}",
+            f"https://github.com/{owner}/{repo_name}/raw/{branch}/{decoded_path}"
+        ]
+        
         try:
             async with httpx.AsyncClient(timeout=12.0, follow_redirects=True) as client:
-                web_headers = {"User-Agent": "Mozilla/5.0"}
-                resp = await client.get(raw_web_url, headers=web_headers)
-                if resp.status_code == 200 and len(resp.text) > 5:
-                    lines = resp.text.splitlines()
-                    decoded_path = urllib.parse.unquote(file_path)
-                    diff_text = f"""diff --git a/{decoded_path} b/{decoded_path}
+                web_headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
+                for target_url in candidate_urls:
+                    resp = await client.get(target_url, headers=web_headers)
+                    if resp.status_code == 200 and len(resp.text) > 0:
+                        lines = resp.text.splitlines()
+                        diff_text = f"""diff --git a/{decoded_path} b/{decoded_path}
 new file mode 100644
 index 0000000..1111111
 --- /dev/null
 +++ b/{decoded_path}
-@@ -1,1 +1,{len(lines)} @@
+@@ -1,1 +1,{max(1, len(lines))} @@
 """
-                    for line in lines:
-                        diff_text += f"+{line}\n"
-                    pr_title = f"File Scan: {decoded_path}"
+                        for line in lines:
+                            diff_text += f"+{line}\n"
+                        pr_title = f"File Scan: {decoded_path}"
+                        break
         except Exception:
             pass
 

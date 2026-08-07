@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { getApiUrl } from "../../lib/api";
 import Link from "next/link";
 import {
   ShieldAlert,
@@ -58,7 +59,7 @@ export default function PRDetailPage({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     const targetId = prId === "101" ? (localStorage.getItem("latest_pr_id") || "latest") : prId;
-    fetch(`http://localhost:8000/api/prs/${targetId}`)
+    fetch(getApiUrl(`/api/prs/${targetId}`))
       .then((res) => res.json())
       .then((d) => {
         if (d && d.pr_number) {

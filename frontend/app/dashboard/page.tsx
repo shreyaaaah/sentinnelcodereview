@@ -35,6 +35,8 @@ interface TrendData {
   avg_risk_score: number;
 }
 
+import { getApiUrl } from "../lib/api";
+
 export default function DashboardPage() {
   const [trends, setTrends] = useState<TrendData[]>([
     { week: "W26", low: 14, medium: 9, high: 5, critical: 3, avg_risk_score: 78.2 },
@@ -53,7 +55,7 @@ export default function DashboardPage() {
   ]);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/dashboard-overview")
+    fetch(getApiUrl("/api/dashboard-overview"))
       .then((res) => res.json())
       .then((data) => {
         if (data) {
