@@ -1,7 +1,7 @@
-# Secrets
+# Secrets & env files
 .env
 .env.*
-! .env.example
+.env.example
 
 # Python cache & db
 __pycache__/
