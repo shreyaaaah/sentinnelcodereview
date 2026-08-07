@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #05080E;
-  --foreground: #F1F5F9;
+  --background: #060609;
+  --foreground: #F8FAFC;
 }
 
 body {
@@ -14,44 +14,44 @@ body {
   min-height: 100vh;
 }
 
-/* Cyberpunk Glassmorphism Cards */
+/* Luxury Onyx & Champagne Gold Glassmorphism Cards */
 .glass-panel {
-  background: rgba(10, 14, 23, 0.75);
+  background: rgba(14, 14, 20, 0.85);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 245, 155, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.18);
   border-radius: 0.85rem;
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
 }
 
 .glass-panel-hover {
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .glass-panel-hover:hover {
-  border-color: rgba(0, 245, 155, 0.4);
-  box-shadow: 0 12px 32px -4px rgba(0, 245, 155, 0.18);
+  border-color: rgba(245, 158, 11, 0.45);
+  box-shadow: 0 12px 32px -4px rgba(245, 158, 11, 0.2);
 }
 
-/* Neon Glow Utilities */
-.emerald-glow {
-  box-shadow: 0 0 20px -2px rgba(0, 245, 155, 0.4);
+/* Gold Glow Utilities */
+.gold-glow {
+  box-shadow: 0 0 20px -2px rgba(245, 158, 11, 0.35);
 }
 
-.cyan-glow {
-  box-shadow: 0 0 20px -2px rgba(0, 210, 255, 0.4);
+.rose-gold-glow {
+  box-shadow: 0 0 20px -2px rgba(251, 113, 133, 0.35);
 }
 
-/* Custom Cyberpunk Scrollbars */
+/* Custom Onyx & Gold Scrollbars */
 ::-webkit-scrollbar {
   width: 7px;
   height: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #05080E;
+  background: #060609;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1A2333;
+  background: #1C1C28;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #00F59B;
+  background: #F59E0B;
 }
