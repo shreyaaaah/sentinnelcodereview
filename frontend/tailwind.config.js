@@ -10,17 +10,19 @@ module.exports = {
     extend: {
       colors: {
         dark: {
-          900: '#0B0F17',
+          950: '#05080E',
+          900: '#0A0E17',
           800: '#111827',
-          700: '#1F2937',
-          600: '#374151',
+          700: '#1A2333',
+          600: '#25334D',
         },
-        brand: {
-          indigo: '#6366F1',
-          purple: '#8B5CF6',
-          emerald: '#10B981',
-          rose: '#EF4444',
-          amber: '#F59E0B',
+        cyber: {
+          emerald: '#00F59B',
+          cyan: '#00D2FF',
+          teal: '#0D9488',
+          rose: '#FF3366',
+          amber: '#FFB800',
+          silver: '#94A3B8',
         }
       }
     },

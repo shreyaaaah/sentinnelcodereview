@@ -185,11 +185,11 @@ export default function StandaloneScanPage() {
   return (
     <div className="space-y-8 max-w-6xl mx-auto">
       {/* Header Banner */}
-      <div className="border-b border-gray-800 pb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="border-b border-emerald-500/20 pb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center space-x-3">
             <h1 className="text-3xl font-extrabold text-white tracking-tight">Instant Multi-Agent Code Review</h1>
-            <span className="px-3 py-1 text-xs font-black bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-md uppercase tracking-wider shadow-md shadow-indigo-500/20 flex items-center gap-1">
+            <span className="px-3 py-1 text-xs font-black bg-gradient-to-r from-emerald-400 to-cyan-500 text-dark-950 rounded-md uppercase tracking-wider shadow-md shadow-emerald-500/25 flex items-center gap-1">
               <Sparkles className="w-3.5 h-3.5" /> Standalone & GitHub
             </span>
           </div>
@@ -206,7 +206,7 @@ export default function StandaloneScanPage() {
             <button
               onClick={() => setActiveInputTab("paste")}
               className={`px-4 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-2 ${
-                activeInputTab === "paste" ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/30" : "text-gray-400 hover:bg-gray-800"
+                activeInputTab === "paste" ? "bg-gradient-to-r from-emerald-500 to-teal-500 text-dark-950 shadow-md shadow-emerald-500/30" : "text-gray-400 hover:bg-gray-800"
               }`}
             >
               <Code className="w-4 h-4" /> Paste Code Text
@@ -214,7 +214,7 @@ export default function StandaloneScanPage() {
             <button
               onClick={() => setActiveInputTab("upload")}
               className={`px-4 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-2 ${
-                activeInputTab === "upload" ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/30" : "text-gray-400 hover:bg-gray-800"
+                activeInputTab === "upload" ? "bg-gradient-to-r from-emerald-500 to-teal-500 text-dark-950 shadow-md shadow-emerald-500/30" : "text-gray-400 hover:bg-gray-800"
               }`}
             >
               <Upload className="w-4 h-4" /> Upload File (.py, .js, .ts)
@@ -222,7 +222,7 @@ export default function StandaloneScanPage() {
             <button
               onClick={() => setActiveInputTab("github")}
               className={`px-4 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-2 ${
-                activeInputTab === "github" ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/30" : "text-gray-400 hover:bg-gray-800"
+                activeInputTab === "github" ? "bg-gradient-to-r from-emerald-500 to-teal-500 text-dark-950 shadow-md shadow-emerald-500/30" : "text-gray-400 hover:bg-gray-800"
               }`}
             >
               <Globe className="w-4 h-4" /> GitHub Repo / PR URL
@@ -235,13 +235,13 @@ export default function StandaloneScanPage() {
                 type="text"
                 value={filename}
                 onChange={(e) => setFilename(e.target.value)}
-                placeholder="Filename (e.g. payment_processor.py)"
-                className="bg-gray-900 border border-gray-800 rounded-lg px-3 py-1.5 text-gray-200 focus:outline-none focus:border-indigo-500 w-48"
+                placeholder="Filename (e.g. main.py)"
+                className="bg-gray-900 border border-emerald-500/20 rounded-lg px-3 py-1.5 text-gray-200 focus:outline-none focus:border-emerald-500 w-48"
               />
               <select
                 value={language}
                 onChange={(e) => setLanguage(e.target.value)}
-                className="bg-gray-900 border border-gray-800 rounded-lg px-3 py-1.5 text-gray-200 focus:outline-none focus:border-indigo-500"
+                className="bg-gray-900 border border-emerald-500/20 rounded-lg px-3 py-1.5 text-gray-200 focus:outline-none focus:border-emerald-500"
               >
                 <option value="python">Python</option>
                 <option value="javascript">JavaScript</option>
@@ -258,12 +258,12 @@ export default function StandaloneScanPage() {
             value={codeText}
             onChange={(e) => setCodeText(e.target.value)}
             rows={12}
-            className="w-full bg-gray-950 font-mono text-xs text-gray-200 p-4 rounded-xl border border-gray-900 focus:outline-none focus:border-indigo-500/50 leading-relaxed"
+            className="w-full bg-gray-950 font-mono text-xs text-gray-200 p-4 rounded-xl border border-emerald-500/20 focus:outline-none focus:border-emerald-400/50 leading-relaxed"
             placeholder="Paste your source code snippet here..."
           />
         ) : activeInputTab === "upload" ? (
-          <div className="border-2 border-dashed border-gray-800 hover:border-indigo-500/50 rounded-xl p-12 text-center transition-all bg-gray-950/40">
-            <Upload className="w-10 h-10 text-indigo-400 mx-auto mb-3" />
+          <div className="border-2 border-dashed border-emerald-500/30 hover:border-emerald-400 rounded-xl p-12 text-center transition-all bg-gray-950/40">
+            <Upload className="w-10 h-10 text-emerald-400 mx-auto mb-3" />
             <p className="text-sm font-semibold text-white mb-1">Drag and drop your source file here</p>
             <p className="text-xs text-gray-400 mb-4">Supports .py, .js, .ts, .go, .java files up to 10MB</p>
             <input
@@ -274,14 +274,14 @@ export default function StandaloneScanPage() {
             />
             <label
               htmlFor="file-upload-input"
-              className="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-xs font-bold text-gray-200 cursor-pointer transition-all inline-block"
+              className="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-xs font-bold text-emerald-400 cursor-pointer transition-all inline-block"
             >
               Browse Files
             </label>
           </div>
         ) : (
-          <div className="p-8 bg-gray-950/60 rounded-xl border border-gray-800 space-y-4">
-            <div className="flex items-center space-x-2 text-xs font-mono text-indigo-400">
+          <div className="p-8 bg-gray-950/60 rounded-xl border border-emerald-500/20 space-y-4">
+            <div className="flex items-center space-x-2 text-xs font-mono text-emerald-400">
               <Globe className="w-4 h-4" />
               <span>Enter GitHub Repository or Pull Request URL</span>
             </div>
@@ -291,26 +291,26 @@ export default function StandaloneScanPage() {
               value={githubUrl}
               onChange={(e) => setGithubUrl(e.target.value)}
               placeholder="e.g. https://github.com/fastapi/fastapi or owner/repo or https://github.com/owner/repo/pull/42"
-              className="w-full bg-gray-900 border border-gray-800 rounded-xl px-4 py-3 text-sm text-gray-200 font-mono focus:outline-none focus:border-indigo-500"
+              className="w-full bg-gray-900 border border-emerald-500/20 rounded-xl px-4 py-3 text-sm text-gray-200 font-mono focus:outline-none focus:border-emerald-400"
             />
 
             <div className="flex items-center space-x-2 text-xs font-mono text-gray-400">
               <span>Try Presets:</span>
               <button
                 onClick={() => setGithubUrl("https://github.com/fastapi/fastapi")}
-                className="px-2.5 py-1 rounded bg-gray-900 hover:bg-gray-800 text-indigo-400 font-bold"
+                className="px-2.5 py-1 rounded bg-gray-900 hover:bg-gray-800 text-emerald-400 font-bold"
               >
                 fastapi/fastapi
               </button>
               <button
                 onClick={() => setGithubUrl("https://github.com/pallets/flask")}
-                className="px-2.5 py-1 rounded bg-gray-900 hover:bg-gray-800 text-indigo-400 font-bold"
+                className="px-2.5 py-1 rounded bg-gray-900 hover:bg-gray-800 text-emerald-400 font-bold"
               >
                 pallets/flask
               </button>
               <button
                 onClick={() => setGithubUrl("https://github.com/django/django")}
-                className="px-2.5 py-1 rounded bg-gray-900 hover:bg-gray-800 text-indigo-400 font-bold"
+                className="px-2.5 py-1 rounded bg-gray-900 hover:bg-gray-800 text-emerald-400 font-bold"
               >
                 django/django
               </button>
@@ -321,16 +321,16 @@ export default function StandaloneScanPage() {
         {/* Action Button & Stepper */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
           {isScanning ? (
-            <div className="flex items-center space-x-3 text-xs font-mono text-indigo-400 bg-indigo-500/10 px-4 py-3 rounded-xl border border-indigo-500/20 w-full">
-              <RefreshCw className="w-4 h-4 animate-spin text-indigo-400" />
+            <div className="flex items-center space-x-3 text-xs font-mono text-emerald-400 bg-emerald-500/10 px-4 py-3 rounded-xl border border-emerald-500/30 w-full">
+              <RefreshCw className="w-4 h-4 animate-spin text-emerald-400" />
               <span className="font-semibold">{scanStep}</span>
             </div>
           ) : (
             <button
               onClick={runCodeReview}
-              className="w-full py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 via-purple-600 to-rose-600 hover:from-indigo-500 hover:to-rose-500 text-white font-extrabold text-sm shadow-xl shadow-indigo-600/30 flex items-center justify-center space-x-2 transition-all transform active:scale-95"
+              className="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-500 hover:from-emerald-300 hover:to-cyan-400 text-dark-950 font-black text-sm shadow-xl shadow-emerald-500/25 flex items-center justify-center space-x-2 transition-all transform active:scale-95"
             >
-              <Play className="w-4 h-4 fill-white" />
+              <Play className="w-4 h-4 fill-dark-950" />
               <span>{activeInputTab === "github" ? "Analyze GitHub Repository with Gemini Agents" : "Run Gemini Multi-Agent Review"}</span>
             </button>
           )}

@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #0B0F17;
-  --foreground: #F9FAFB;
+  --background: #05080E;
+  --foreground: #F1F5F9;
 }
 
 body {
@@ -14,34 +14,44 @@ body {
   min-height: 100vh;
 }
 
-/* Glassmorphism utility card */
+/* Cyberpunk Glassmorphism Cards */
 .glass-panel {
-  background: rgba(17, 24, 39, 0.7);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 0.75rem;
+  background: rgba(10, 14, 23, 0.75);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 245, 155, 0.12);
+  border-radius: 0.85rem;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
 }
 
 .glass-panel-hover {
-  transition: all 0.2s ease-in-out;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .glass-panel-hover:hover {
-  border-color: rgba(99, 102, 241, 0.4);
-  box-shadow: 0 8px 24px -4px rgba(99, 102, 241, 0.15);
+  border-color: rgba(0, 245, 155, 0.4);
+  box-shadow: 0 12px 32px -4px rgba(0, 245, 155, 0.18);
 }
 
-/* Custom scrollbars */
+/* Neon Glow Utilities */
+.emerald-glow {
+  box-shadow: 0 0 20px -2px rgba(0, 245, 155, 0.4);
+}
+
+.cyan-glow {
+  box-shadow: 0 0 20px -2px rgba(0, 210, 255, 0.4);
+}
+
+/* Custom Cyberpunk Scrollbars */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #0B0F17;
+  background: #05080E;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1F2937;
+  background: #1A2333;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #374151;
+  background: #00F59B;
 }
