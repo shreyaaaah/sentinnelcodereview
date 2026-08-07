@@ -30,12 +30,14 @@ app.add_middleware(
 app.include_router(api.router)
 app.include_router(github.router)
 
+@app.get("/")
 @app.get("/health")
 async def health_check():
     return {
         "status": "healthy",
         "service": "SentinelReview Backend",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "docs": "/docs"
     }
 
 if __name__ == "__main__":
