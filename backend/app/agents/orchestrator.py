@@ -115,16 +115,16 @@ class ReviewOrchestrator:
         return list(deduped.values())
 
     def _compute_overall_pr_risk(self, findings: List[Dict[str, Any]], risk_findings: List[Dict[str, Any]]) -> float:
-        sev_weights = {"low": 5, "medium": 15, "high": 35, "critical": 60}
-        finding_score = sum(sev_weights.get(f["severity"], 5) for f in findings)
+        # Realistic severity weights
+        sev_weights = {"low": 4, "medium": 8, "high": 15, "critical": 25}
+        finding_score = sum(sev_weights.get(f["severity"], 4) for f in findings)
 
         max_file_risk = max((r.get("bug_proneness_score", 0.0) for r in risk_findings), default=0.0)
 
-        # If 0 code findings identified, clean code returns 0.0 risk score
-        if not findings:
-            if max_file_risk >= 80:
-                return round(max_file_risk * 0.2, 1)  # Minor background bump only for historically dangerous files
-            return 0.0
+        # Baseline score: 12.0 for clean code
+        # Smooth scaling based on findings + historical churn (15% context)
+        baseline = 12.0 if not findings else 15.0
+        composite = baseline + finding_score + (max_file_risk * 0.15)
 
-        composite = (finding_score * 0.6) + (max_file_risk * 0.4)
-        return min(100.0, max(0.0, composite))
+        # Cap between 12.0 and 96.0 for realistic scoring
+        return min(96.0, max(12.0, round(composite, 1)))
