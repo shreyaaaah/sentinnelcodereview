@@ -1,0 +1,13 @@
+# Secrets
+.env
+.env.*
+! .env.example
+
+# Python cache & db
+__pycache__/
+*.pyc
+*.db
+sentinel.db
+aegis.db
+aura_x.db
+.venv/
