@@ -1,13 +1,31 @@
 services:
+  # 1. FastAPI Backend Service
   - type: web
     name: sentinel-backend
     env: python
     region: oregon
-    buildCommand: pip install -r backend/requirements.txt
-    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    plan: free
     rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: GEMINI_API_KEY
         sync: false
       - key: DATABASE_URL
         value: sqlite+aiosqlite:///./sentinel.db
+
+  # 2. Next.js Frontend Service
+  - type: web
+    name: sentinel-frontend
+    env: node
+    region: oregon
+    plan: free
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        fromService:
+          type: web
+          name: sentinel-backend
+          property: host
